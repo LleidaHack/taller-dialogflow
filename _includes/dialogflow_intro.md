@@ -11,7 +11,7 @@ En aquesta sessió només ens centrarem amb els *Intent*. Són la part principal
 
 ## Training phrases
 
-Frases que faranq ue certa acció s'executi.
+Frases que faran que certa acció s'executi.
 
 Per exemple: La training phrase: "Ok Google!" acciona l'intent "Welcome".
 
