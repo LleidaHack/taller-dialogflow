@@ -42,7 +42,7 @@ Small talk permet que el teu chatbot s'assembli més a una persona i que sigui c
 Repetir `Creació primer Intent`. 
 
 1. Training phrases. Escriure la frase tal com la diria un client i marcar les entitats claus com el nombre de persones i dia de la reserva.
-2. indicar el tipus de la entitat, és obligatori?, resposes si no s'obté el paràmetre...
+2. Indicar el tipus de l'entitat, és obligatori?, respostes si no s'obté el paràmetre...
 3. Resposetes mostrant les entitats obtingudes.
 
 ![Intent amb params](../images/intent-params.png)
