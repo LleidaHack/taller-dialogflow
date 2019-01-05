@@ -1,0 +1,124 @@
+td, .month-name {
+  text-align: center;
+  padding:0;
+  height: 3em;
+  width: 3em;
+  position: relative;
+}
+
+
+/* Month name style */
+.month-name {
+  text-align: center;
+  padding: .5em;
+}
+
+th {
+  font-size: 2em;
+  vertical-align: middle;
+}
+
+table {
+  vertical-align: middle !important;
+}
+
+td {
+  
+  font-size: 1.1em;
+}
+
+/* Week days */
+.week-days {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: gray;
+  vertical-align: middle;
+}
+
+/* Calendar days */
+.normal-day, .today {
+  font-weight: 500;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.num-events {
+  position: absolute;
+  top: 1em;
+  font-size: .5em;
+}
+
+.today { 
+
+}
+
+.selected {
+
+}
+
+
+/* Left part day detail */
+.day-detail {
+  width: 50%;
+  border-radius: 0.25rem;
+  background: rgb(255, 200, 180);
+  padding: 0;
+
+  .day-header {
+    border-radius: 0.25rem;
+    background: #ff7043;
+    text-align: center;
+    height: 1.8em;
+    color: white;
+    width: 100%;
+    font-size: 2em;
+  }
+
+  .day-container {
+    margin-top: 20%;
+    text-align: center;
+
+    .day-number {
+      font-size: 7em;
+      font-style: italic;
+      font-weight: 500;
+      color: rgb(83, 83, 83);
+    }
+
+    .day-month {
+      font-size: 3em;
+      font-style: italic;
+      margin: 0;
+      padding: 0;
+    }
+
+    .day-year {
+      font-size: 3em;
+      font-style: italic;
+      color: rgba(255, 255, 255, .6);
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+/* Structure style */
+.full {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 90%;
+  margin: auto;
+  height: 90vh;
+}
+
+.calendar-wrapper {
+  padding: 2em;
+}
+
+.not-current {
+  visibility: hidden;
+}
