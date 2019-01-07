@@ -35,9 +35,9 @@ export class RestaurantAssistant {
       conv.ask("My name is William, I am Lleida Hack restaurant's asistant.");
     });
     
-    this.app.intent(GOODBYE_INTENT, (conv: DialogflowConversation) => {
-      conv.close("Bye! Have a nice day");
-    });
+    // this.app.intent(GOODBYE_INTENT, (conv: DialogflowConversation) => {
+    //   conv.close("Bye! Have a nice day");
+    // });
 
     this.app.intent(BOOK_TABLE_INTENT, async (conv: DialogflowConversation, params: any) => {
       const reservation = new Reservation(params);
