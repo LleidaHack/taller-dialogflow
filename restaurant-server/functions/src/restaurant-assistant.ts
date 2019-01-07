@@ -24,19 +24,19 @@ export class RestaurantAssistant {
   public mapIntent() {
 
     this.app.intent(WELCOME_INTENT, (conv: DialogflowConversation) => {
-      conv.ask("I am Lleida Hack restaurant's asistant. How can I help you?");
+      conv.ask("Hola! Soy el asistente del Restaurante Lleida Hack. Como puedo ayudarte?");
     });
     
     this.app.intent(FALLBACK_INTENT, (conv: DialogflowConversation) => {
-      conv.ask("I didn't undertand you, can you reapeat it please?");
+      conv.ask("No le he entendido, puede repetirlo, por favor?");
     });
     
     this.app.intent(WHO_AM_I_INTENT, (conv: DialogflowConversation) => {
-      conv.ask("My name is William, I am Lleida Hack restaurant's asistant.");
+      conv.ask("Mi nombre es Guillem, Como ya te he dicho antes soy el asistente del Restaurante Lleida Hack.");
     });
     
     this.app.intent(GOODBYE_INTENT, (conv: DialogflowConversation) => {
-      conv.close("Bye! Have a nice day");
+      conv.close("Adios, que tenga un buen día");
     });
 
     this.app.intent(BOOK_TABLE_INTENT, async (conv: DialogflowConversation, params: any) => {
