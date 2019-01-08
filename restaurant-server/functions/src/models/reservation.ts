@@ -15,7 +15,7 @@ export class Reservation {
   public toDocument() {
     return {
       numPeople: this.numPeople,
-      data: this.date,
+      date: this.date,
       time: this.time
     };
   }
