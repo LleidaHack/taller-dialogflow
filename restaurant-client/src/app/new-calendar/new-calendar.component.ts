@@ -32,6 +32,7 @@ export class NewCalendarComponent implements OnInit {
     this.setSelectedDay(3, 3);
     this.reservationService.reservationChanges()
       .subscribe(docs => { 
+        console.log(docs)
         this.monthTable = [... this.updateReservations(this.monthTable, docs)]; 
       });
   }
@@ -39,11 +40,15 @@ export class NewCalendarComponent implements OnInit {
   private updateReservations(monthTable: RestaurantDay[][], newReservations: Reservation[]) {
     for (let i = 0; i < monthTable.length; i++) {
       for (let j = 0; j < monthTable[i].length; j++) {
-        const date = this.generateDate(monthTable[i][j].day);
+        const date = this.generateDate(monthTable[i][j].day);        
         monthTable[i][j].reservations = newReservations.filter(r => r.date === date);                
       }
     }
     return monthTable;
+  }
+
+  public items(length: number) {
+    return Array(Number(length)).fill(0);
   }
 
   private generateDate(day: number) {

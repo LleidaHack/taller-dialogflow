@@ -41,6 +41,7 @@ td {
   font-weight: 500;
   cursor: pointer;
   vertical-align: middle;
+  // border-radius: 50%;
 }
 
 .num-events {
@@ -111,7 +112,7 @@ td {
 .main {
   width: 90%;
   margin: auto;
-  height: 90vh;
+  height: 55vh;
 }
 
 .calendar-wrapper {
@@ -125,4 +126,29 @@ td {
 /* reservations */
 .reservations-wrapper {
   padding: 2em;
+}
+
+.reservation {
+  color: gray;
+  padding: 1em;
+  height: 10em;
+}
+
+p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+  i {
+    font-size: 1.4em;
+  }
+}
+
+.people {
+  font-size: 1em !important;
+}
+
+.hour {
+  margin-bottom: .5em;
+  font-size: 1.7em;
 }

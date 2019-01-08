@@ -22,10 +22,24 @@
         </div>
       </div>
       <div class="container reservations-wrapper">
-        <div *ngFor="let reservation of selectedDay.reservations" class="card" style="width: 100%">
-          <i class="fas fa-plus"></i> {{ reservation.time }}
-          <i class="fas fa-user"></i> {{ reservation.numPeople }}
+        <div class="row align-items-center">
+            <div *ngFor="let reservation of selectedDay.reservations" class="card reservation col-3" style="width: 100%">
+              <p>
+                <i class="fas fa-clock"></i>
+              </p>
+              <p class="hour">
+                 {{ reservation.time }}
+                </p>
+                <p>
+                  <i class="fas fa-utensils"></i>
+                </p>
+              <p class="people">
+                <ng-container *ngIf="reservation.numPeople > 3"><i class="fas fa-user"></i> x{{ reservation.numPeople }}</ng-container>
+                <ng-container *ngIf="reservation.numPeople <= 3"><i *ngFor="let i of items(reservation.numPeople)" class="fas fa-user mr-2"></i></ng-container>
+              </p>
+            </div>
         </div>
+        
       </div>      
     </div>
     <div class="col-6 calendar-wrapper full">
