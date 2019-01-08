@@ -6,7 +6,7 @@ export class Reservation {
   public time: string;
 
   constructor (dialogFlowParams: any) {
-    moment.locale('en');
+    moment.locale('es');
     this.numPeople = Number(dialogFlowParams.numPeople);
     this.date = moment(dialogFlowParams.date).format('YYYY-MM-DD');
     this.time = moment(dialogFlowParams.time).format('hh:mm');
