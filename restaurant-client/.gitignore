@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Firebase api key
+firebase.api.key.ts
+
 # compiled output
 /dist
 /tmp

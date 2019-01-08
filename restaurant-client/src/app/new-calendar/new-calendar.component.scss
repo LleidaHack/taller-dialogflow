@@ -76,11 +76,10 @@ td {
   }
 
   .day-container {
-    margin-top: 20%;
     text-align: center;
 
     .day-number {
-      font-size: 7em;
+      font-size: 5em;
       font-style: italic;
       font-weight: 500;
       color: rgb(83, 83, 83);
@@ -109,7 +108,7 @@ td {
   height: 100%;
 }
 
-.card {
+.main {
   width: 90%;
   margin: auto;
   height: 90vh;
@@ -121,4 +120,9 @@ td {
 
 .not-current {
   visibility: hidden;
+}
+
+/* reservations */
+.reservations-wrapper {
+  padding: 2em;
 }

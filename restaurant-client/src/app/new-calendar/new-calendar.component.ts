@@ -1,4 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ReservationsService } from '../reservations.service';
+import { Reservation } from '../reservation';
+
+interface RestaurantDay {
+  reservations: Reservation[];
+  day: number;
+  classes: string;
+}
 
 @Component({
   selector: 'app-new-calendar',
@@ -10,21 +18,41 @@ export class NewCalendarComponent implements OnInit {
   public weekDays = ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   public months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 
-  public monthTable: Array<{ classes: string, day: number }[]> = [];
+  public monthTable: RestaurantDay[][] = [];
 
   public month: number = 0;
   public year: number = 2019;
 
   public selectedDay: any;
 
-  constructor() { }
+  constructor(private reservationService: ReservationsService) { }
 
   ngOnInit() {
     this.buildMonthDays();
-    this.setSelectedDay(1);
+    this.setSelectedDay(3, 3);
+    this.reservationService.reservationChanges()
+      .subscribe(docs => { 
+        this.monthTable = [... this.updateReservations(this.monthTable, docs)]; 
+      });
   }
 
-  changeMonth(offset: number) {
+  private updateReservations(monthTable: RestaurantDay[][], newReservations: Reservation[]) {
+    for (let i = 0; i < monthTable.length; i++) {
+      for (let j = 0; j < monthTable[i].length; j++) {
+        const date = this.generateDate(monthTable[i][j].day);
+        monthTable[i][j].reservations = newReservations.filter(r => r.date === date);                
+      }
+    }
+    return monthTable;
+  }
+
+  private generateDate(day: number) {
+    const month = (this.month + 1).toString();
+    let dayStr = day.toString();
+    return [this.year, month.length == 1 ? '0' + month : month, dayStr.length == 1 ? '0' + dayStr : dayStr].join('-');
+  }
+
+  public changeMonth(offset: number) {
     if (this.month == 11 && offset > 0) {
       this.month = 0;
     } else if (this.month == 0 && offset < 0) {
@@ -35,15 +63,15 @@ export class NewCalendarComponent implements OnInit {
     this.buildMonthDays();
   }
 
-  setSelectedDay(day: number) {
-    const events = [];
-    const date = new Date(this.year, this.month, day)
+  public setSelectedDay(i: number, j: number) {
+    const date = new Date(this.year, this.month, this.monthTable[i][j].day)
     this.selectedDay = { 
       dayName: this.weekDays[date.getDay()], 
-      day, 
+      day: this.monthTable[i][j].day, 
       year: this.year, 
       month: this.month,
-      monthName: this.months[this.month]
+      monthName: this.months[this.month],
+      reservations: this.monthTable[i][j].reservations
     };
   }
 
@@ -80,7 +108,7 @@ export class NewCalendarComponent implements OnInit {
     return today;
   }
 
-  public buildMonthDays() {
+  public buildMonthDays(reservations: Reservation[] = []) {
     const firstDayOfMonth = new Date(this.year, this.month, 1).getDay();
     const lastDateOfMonth = new Date(this.year, this.month + 1, 0).getDate();
     const lastDayOfLastMonth = this.month == 0 ? new Date(this.year - 1, 11, 0).getDate() : new Date(this.year, this.month, 0).getDate();
@@ -89,7 +117,7 @@ export class NewCalendarComponent implements OnInit {
     let i = 1;
     
     this.monthTable = [];
-    let row: { classes: string, day: number }[] = [];
+    let row: RestaurantDay[] = [];
 
     do {
       
@@ -100,7 +128,7 @@ export class NewCalendarComponent implements OnInit {
       } else if (i === 1) {
         var k = lastDayOfLastMonth - firstDayOfMonth + 1;
         for(let j = 0; j < firstDayOfMonth; j++) {
-          row.push({day: k, classes: "prev-month not-current"});
+          row.push({ reservations: [], day: k, classes: "prev-month not-current" });
           k++;
         }
       }
@@ -110,15 +138,15 @@ export class NewCalendarComponent implements OnInit {
       var chkY = chk.getFullYear();
       var chkM = chk.getMonth();
       if (chkY == today.year && chkM == today.month && i == today.day) {
-        row.push({day: i, classes: "today"});
+        row.push({ reservations: [], day: i, classes: "today" });
       } else {
-        row.push({day: i, classes: "normal-day"});
+        row.push({ reservations: [], day: i, classes: "normal-day" });
       }
 
       if ( i == lastDateOfMonth ) {
         let k = 1;
         for(dow; dow < 6; dow++) {
-          row.push({day: k, classes: "next-month not-current"});
+          row.push({ reservations: [], day: k, classes: "next-month not-current" });
           k++;
         }
       }
@@ -137,7 +165,7 @@ export class NewCalendarComponent implements OnInit {
         }
       }
       // Append selected class to the clicked day
-      this.setSelectedDay(this.monthTable[i][j].day);
+      this.setSelectedDay(i, j);
       this.monthTable[i][j].classes += " selected";
     }
   }

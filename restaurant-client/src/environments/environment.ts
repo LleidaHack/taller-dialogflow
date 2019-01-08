@@ -1,9 +1,19 @@
+import { API_KEY } from './firebase.api.key';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: API_KEY,
+    authDomain: "provacastella-83f36.firebaseapp.com",
+    databaseURL: "https://provacastella-83f36.firebaseio.com",
+    projectId: "provacastella-83f36",
+    storageBucket: "provacastella-83f36.appspot.com",
+    messagingSenderId: "145592827206"
+  }
 };
 
 /*

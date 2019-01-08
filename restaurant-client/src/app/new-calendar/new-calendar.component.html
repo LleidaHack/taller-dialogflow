@@ -1,20 +1,32 @@
-<div class="card">
+<div class="main card">
   <div class="row full">
     <div class="col-6 day-detail full">
       <div class="day-header">
         {{ selectedDay.dayName }}
       </div>
       <div class="container day-container">
-        <div class="day-number">
-          {{ selectedDay.day }}
-        </div>
-        <div class="day-month">
-          {{ selectedDay.monthName }}
-        </div>
-        <div class="day-year">
-          {{ selectedDay.year }}
+        <div class="row align-content-center align-middle">
+          <div class="col-3">
+            <div class="day-number">
+              {{ selectedDay.day }}
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="day-month">
+              {{ selectedDay.monthName }}
+            </div>
+            <div class="day-year">
+              {{ selectedDay.year }}
+            </div>
+          </div>
         </div>
       </div>
+      <div class="container reservations-wrapper">
+        <div *ngFor="let reservation of selectedDay.reservations" class="card" style="width: 100%">
+          <i class="fas fa-plus"></i> {{ reservation.time }}
+          <i class="fas fa-user"></i> {{ reservation.numPeople }}
+        </div>
+      </div>      
     </div>
     <div class="col-6 calendar-wrapper full">
       <table class="full">
@@ -33,7 +45,8 @@
             <td mdbWavesEffect *ngFor="let day of row; let j = index" (click)="setAsSelected(i, j)" class="calendar-day"
               [ngClass]="day.classes">
               <p>{{ day.day }}</p>
-              <mdb-badge class="num-events" pill="true" danger="true">3</mdb-badge>
+              <mdb-badge *ngIf="day.reservations.length !== 0" class="num-events" pill="true" danger="true">{{
+                day.reservations.length }}</mdb-badge>
             </td>
           </tr>
         </tbody>
