@@ -56,8 +56,8 @@ export class RestaurantAssistant {
         // Store reservation to firestore and then ask
         await this.db.collection('events').add(reservation.toDocument());
         conv.close(this.randomize([
-          `De acuredo! Reservare una mesa para ${reservation.numPeople} personas el dia ${new Date(reservation.date).getDay()}. Nos vemos!`,
-          `Gracias por su reserva. Hasta el dia ${new Date(reservation.date).getDay()}`
+          `De acuerdo! Reservaré una mesa para ${reservation.numPeople} personas el dia ${new Date(reservation.date).getDate()}. Nos vemos!`,
+          `Gracias por su reserva. Hasta el dia ${new Date(reservation.date).getDate()}`
         ]));
       }
       catch (err) {

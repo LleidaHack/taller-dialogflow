@@ -20,6 +20,8 @@ export class NewCalendarComponent implements OnInit {
 
   public monthTable: RestaurantDay[][] = [];
 
+  private lastReservations: Reservation[];
+
   public month: number = 0;
   public year: number = 2019;
 
@@ -32,7 +34,7 @@ export class NewCalendarComponent implements OnInit {
     this.setSelectedDay(3, 3);
     this.reservationService.reservationChanges()
       .subscribe(docs => { 
-        console.log(docs)
+        this.lastReservations = docs;
         this.monthTable = [... this.updateReservations(this.monthTable, docs)]; 
       });
   }
@@ -66,6 +68,7 @@ export class NewCalendarComponent implements OnInit {
       this.month += offset;
     }
     this.buildMonthDays();
+    this.monthTable = [... this.updateReservations(this.monthTable, this.lastReservations)]; 
   }
 
   public setSelectedDay(i: number, j: number) {

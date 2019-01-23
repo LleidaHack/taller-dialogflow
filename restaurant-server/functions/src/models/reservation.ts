@@ -9,7 +9,7 @@ export class Reservation {
     moment.locale('es');
     this.numPeople = Number(dialogFlowParams.numPeople);
     this.date = moment(dialogFlowParams.date).format('YYYY-MM-DD');
-    this.time = moment(dialogFlowParams.time).format('hh:mm');
+    this.time = moment(dialogFlowParams.time).add(1, 'hours').format('HH:mm');
   }
 
   public toDocument() {
