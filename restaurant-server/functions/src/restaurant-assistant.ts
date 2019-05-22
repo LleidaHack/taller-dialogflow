@@ -27,11 +27,11 @@ export class RestaurantAssistant {
   // Set an event for each intent
   public mapIntent() {
 
-    this.app.intent(WELCOME_INTENT, (conv: DialogflowConversation) => {
+    this.app.intent(WELCOME_INTENT, (conv: any) => {
       conv.ask("Hola! Soy el asistente del Restaurante Lleida Hack. Como puedo ayudarte?");
     });
     
-    this.app.intent(FALLBACK_INTENT, (conv: DialogflowConversation) => {
+    this.app.intent(FALLBACK_INTENT, (conv: any) => {
       conv.ask(this.randomize([
         "No le he entendido, puede repetirlo, por favor?",
         "Ups, no he entendido a que te refieres.",
@@ -41,7 +41,7 @@ export class RestaurantAssistant {
       ]));
     });
     
-    this.app.intent(WHO_AM_I_INTENT, (conv: DialogflowConversation) => {
+    this.app.intent(WHO_AM_I_INTENT, (conv: any) => {
       conv.ask(this.randomize([
         "Mi nombre es Guillem, Como ya te he dicho antes soy el asistente del Restaurante Lleida Hack.",
         "¿Porque te interesa tanto mi nombre?",
@@ -50,7 +50,7 @@ export class RestaurantAssistant {
     });
     
 
-    this.app.intent(BOOK_TABLE_INTENT, async (conv: DialogflowConversation, params: any) => {
+    this.app.intent(BOOK_TABLE_INTENT, async (conv: any, params: any) => {
       const reservation = new Reservation(params);
       try {
         // Store reservation to firestore and then ask
