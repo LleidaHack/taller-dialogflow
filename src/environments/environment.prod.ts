@@ -4,10 +4,11 @@ export const environment = {
   production: true,
   firebase: {
     apiKey: API_KEY,
-    authDomain: "provacastella-83f36.firebaseapp.com",
-    databaseURL: "https://provacastella-83f36.firebaseio.com",
-    projectId: "provacastella-83f36",
-    storageBucket: "provacastella-83f36.appspot.com",
-    messagingSenderId: "145592827206"
+    authDomain: "taller-chatbot-75f52.firebaseapp.com",
+    databaseURL: "https://taller-chatbot-75f52.firebaseio.com",
+    projectId: "taller-chatbot-75f52",
+    storageBucket: "taller-chatbot-75f52.appspot.com",
+    messagingSenderId: "267696100400",
+    appId: "1:267696100400:web:2d3a1374810e50d1"
   }
 };
